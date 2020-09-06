@@ -5,6 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![PyPI version](https://badge.fury.io/py/pymoviedb.svg)](https://badge.fury.io/py/pymoviedb)
+[![Downloads](https://pepy.tech/badge/pymoviedb)](https://pepy.tech/project/pymoviedb)
 
 
 ## Install from PyPi
@@ -33,7 +34,7 @@
 >>> tv.search("Breaking bad")
 
 # All methods can be found by using dir() function
-print(dir(Movie))
+>>> print(dir(Movie))
 ```
 
 
