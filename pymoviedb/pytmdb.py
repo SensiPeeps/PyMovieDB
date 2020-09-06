@@ -84,8 +84,7 @@ class Movie(AbsMovieDB):
 
         if resp.status_code == 200:
             return resp.json()
-        else:
-            raise TmdbApiError(resp.json())
+        raise TmdbApiError(resp.json())
 
     def recommendations(self, movie_id, language="en", page=1):
         """
@@ -98,8 +97,7 @@ class Movie(AbsMovieDB):
 
         if resp.status_code == 200:
             return resp.json()
-        else:
-            raise TmdbApiError(resp.json())
+        raise TmdbApiError(resp.json())
 
     def trending(self, time_win="week"):
         """
@@ -111,8 +109,7 @@ class Movie(AbsMovieDB):
 
         if resp.status_code == 200:
             return resp.json()
-        else:
-            raise TmdbApiError(resp.json())
+        raise TmdbApiError(resp.json())
 
 
 class TvShows(AbsMovieDB):
@@ -159,8 +156,7 @@ class TvShows(AbsMovieDB):
 
         if resp.status_code == 200:
             return resp.json()
-        else:
-            raise TmdbApiError(resp.json())
+        raise TmdbApiError(resp.json())
 
     def recommendations(self, tv_id, language="en", page=1):
         """
@@ -173,8 +169,7 @@ class TvShows(AbsMovieDB):
 
         if resp.status_code == 200:
             return resp.json()
-        else:
-            raise TmdbApiError(resp.json())
+        raise TmdbApiError(resp.json())
 
     def trending(self, time_win="week"):
         """
@@ -186,5 +181,4 @@ class TvShows(AbsMovieDB):
 
         if resp.status_code == 200:
             return resp.json()
-        else:
-            raise TmdbApiError(resp.json())
+        raise TmdbApiError(resp.json())
