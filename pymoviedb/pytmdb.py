@@ -64,8 +64,7 @@ class Movie(AbsMovieDB):
             check_res = resp.json()["results"]
             if len(check_res) <= 0:
                 raise ZeroResultsFound(resp.text)
-            else:
-                return resp.json()
+            return resp.json()
         else:
             raise TmdbApiError(resp.json())
 
@@ -138,8 +137,7 @@ class TvShows(AbsMovieDB):
             check_res = resp.json()["results"]
             if len(check_res) <= 0:
                 raise ZeroResultsFound(resp.text)
-            else:
-                return resp.json()
+            return resp.json()
 
         else:
             raise TmdbApiError(resp.json())
