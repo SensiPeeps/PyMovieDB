@@ -5,6 +5,10 @@ this_dir = path.abspath(path.dirname(__file__))
 with open("README.md", "r") as f:
     long_description = f.read()
 
+with open("pymoviedb/__init__.py", 'r') as f:
+    import re
+    version = re.search('__version__ = (\S+)', f.read()).group(1)
+
 setup(
     name="pymoviedb",
     description="A simple wrapper over themoviedb.org API",
@@ -13,7 +17,7 @@ setup(
     url="https://github.com/starry69/PyMovieDB",
     author="Stɑrry Shivɑm",
     author_email="starry369126@outlook.com",
-    version="1.3",
+    version=version,
     license="MIT",
     packages=find_packages(),
     install_requires=["requests"],
