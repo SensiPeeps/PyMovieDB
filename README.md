@@ -55,7 +55,7 @@ except ZeroResultsFound:
 ## See also
 TMDB API docs: https://developers.themoviedb.org/3/
 
-This library is being used by my telegram bot bot [αcutєвσt](https://t.me/acutebot),
+This library is being used by my telegram bot [αcutєвσt](https://t.me/acutebot),
 Check that out to see live working example!
 
 Remember that this module not support all TMDB API methods yet.

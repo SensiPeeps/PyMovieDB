@@ -9,12 +9,15 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+
+
 from .pytmdb import Movie, TvShows
 from .excs import *
 
 __author__ = ["Stɑrry Shivɑm"]
-__version__ = 1.2
+__version__ = 1.3
 
-if __name__ == '__main__':
-  from pprint import pprint
-  pprint(__author__, __version__, Movie, TvShows)
+if __name__ == "__main__":
+    from pprint import pprint
+
+    pprint(__author__, __version__, Movie, TvShows)

@@ -23,7 +23,7 @@
 
 from abc import ABC, abstractmethod
 from requests import get
-from excs import TmdbApiError, ZeroResultsFound
+from .excs import TmdbApiError, ZeroResultsFound
 
 
 class AbsMovieDB(ABC):
