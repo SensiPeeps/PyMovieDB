@@ -162,7 +162,7 @@ class TvShows(AbsMovieDB):
 
         payload = {"api_key": self.api_key, "language": language, "page": page}
 
-        resp = get(self.base_url + f"/movie/{tv_id}/recommendations", params=payload)
+        resp = get(self.base_url + f"/tv/{tv_id}/recommendations", params=payload)
 
         if resp.status_code == 200:
             return resp.json()
