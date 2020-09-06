@@ -13,19 +13,17 @@ setup(
     url='https://github.com/starry69/PyMovieDB',
     author='Stɑrry Shivɑm',
     author_email='starry369126@outlook.com',
-    version='1.1',
+    version='1.2',
     license='MIT',
     packages=find_packages(),
     install_requires=['requests'],
-    python_requires='~=3.5',
+    python_requires='>=3.6',
     keywords='api development tmdb themoviedb wrapper library python3',
     classifiers=[
-        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
-        'Intended Audience :: Developers',
-        'Development Status :: 4 - Beta'
+        'Intended Audience :: Developers'
     ])

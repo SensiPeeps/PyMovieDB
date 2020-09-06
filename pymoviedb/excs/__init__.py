@@ -1,4 +1,4 @@
-class TmdbApiError(ValueError):
+class TmdbApiError(Exception):
     """
     raised when API response is not `OK 200`
     """
@@ -7,11 +7,11 @@ class TmdbApiError(ValueError):
         super().__init__(message)
 
 
-class ZeroResultsFound(ValueError):
+class ZeroResultsFound(Exception):
     """
     raise when zero results are found
     against search query.
     """
 
     def __init__(self, message):
-        super().__init__(message)
+        super().__init__(message)    

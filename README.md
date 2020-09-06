@@ -4,13 +4,15 @@
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+[![PyPI version](https://badge.fury.io/py/pymoviedb.svg)](https://badge.fury.io/py/pymoviedb)
+
 
 ## Install from PyPi
 ```pip install pymoviedb```
 
 ## Synopsis
 ```python
->>> from pymoviedb.pytmdb import Movie, TvShows
+>>> from pymoviedb import Movie, TvShows
 >>> APIKEY = "you-api-key"
 
 # Create a Movie object
@@ -52,6 +54,9 @@ except ZeroResultsFound:
 
 ## See also
 TMDB API docs: https://developers.themoviedb.org/3/
+
+This library is being used by my telegram bot bot [αcutєвσt](https://t.me/acutebot),
+Check that out to see live working example!
 
 Remember that this module not support all TMDB API methods yet.
 ## License
