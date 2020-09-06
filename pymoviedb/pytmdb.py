@@ -65,8 +65,8 @@ class Movie(AbsMovieDB):
             if len(check_res) <= 0:
                 raise ZeroResultsFound(resp.text)
             return resp.json()
-        else:
-            raise TmdbApiError(resp.json())
+
+        raise TmdbApiError(resp.json())
 
     def searchid(self, movie_id, language="en", append_to_response="videos"):
         """
@@ -136,8 +136,7 @@ class TvShows(AbsMovieDB):
                 raise ZeroResultsFound(resp.text)
             return resp.json()
 
-        else:
-            raise TmdbApiError(resp.json())
+        raise TmdbApiError(resp.json())
 
     def searchid(self, tv_id, language="en", append_to_response="videos"):
         """
