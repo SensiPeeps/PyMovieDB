@@ -60,7 +60,7 @@ class Movie(AbsMovieDB):
         query: str,
         language: str = "en",
         page: Optional[int] = 1,
-        inlude_adult: Optional[str] = "true",
+        include_adult: Optional[str] = "true",
     ) -> Dict[str, Any]:
         """
         search for the query and return data in json format
@@ -71,7 +71,7 @@ class Movie(AbsMovieDB):
             "language": language,
             "query": query,
             "page": page,
-            "inlude_adult": inlude_adult,
+            "include_adult": include_adult,
         }
 
         resp = get(self.base_url + "/search/movie", params=payload)
@@ -194,7 +194,7 @@ class TvShows(AbsMovieDB):
         query: str,
         language: str = "en",
         page: Optional[int] = 1,
-        inlude_adult: Optional[str] = "true",
+        include_adult: Optional[str] = "true",
     ) -> Dict[str, Any]:
         """
         search for the query and return data in json format
@@ -205,7 +205,7 @@ class TvShows(AbsMovieDB):
             "language": language,
             "query": query,
             "page": page,
-            "inlude_adult": inlude_adult,
+            "include_adult": include_adult,
         }
 
         resp = get(self.base_url + "/search/tv", params=payload)
