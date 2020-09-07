@@ -148,6 +148,40 @@ class Movie(AbsMovieDB):
             return resp.json()
         raise TmdbApiError(resp.text)
 
+    def genre(self, language: str = "en") -> Dict[str, Any]:
+        """
+        Get the list of official genres for movies.
+        """
+        payload = {"api_key": self.api_key, "language": language}
+
+        resp = get(self.base_url + "/genre/movie/list", params=payload)
+
+        if resp.status_code == 200:
+            return resp.json()
+        raise TmdbApiError(resp.text)
+
+    def alternative_titles(
+        self, movie_id: int, country: Optional[str] = None
+    ) -> Dict[str, Any]:
+        """
+        Get all of the alternative titles for a movie.
+        """
+
+        payload = {"api_key": self.api_key, "country": country}
+
+        resp = get(
+            self.base_url + f"/movie/{movie_id}/alternative_titles", params=payload
+        )
+
+        if resp.status_code == 200:
+
+            check_res = resp.json()["titles"]
+            if len(check_res) <= 0:
+                raise ZeroResultsFound(resp.text)
+            return resp.json()
+
+        raise TmdbApiError(resp.text)
+
 
 ############################## TvShows class ##############################
 
@@ -246,4 +280,34 @@ class TvShows(AbsMovieDB):
 
         if resp.status_code == 200:
             return resp.json()
+        raise TmdbApiError(resp.text)
+
+    def genre(self, language: str = "en") -> Dict[str, Any]:
+        """
+        Get the list of official genres for TV shows.
+        """
+        payload = {"api_key": self.api_key, "language": language}
+
+        resp = get(self.base_url + "/genre/tv/list", params=payload)
+
+        if resp.status_code == 200:
+            return resp.json()
+        raise TmdbApiError(resp.text)
+
+    def alternative_titles(self, tv_id: int, language: str = "en") -> Dict[str, Any]:
+        """
+        Returns all of the alternative titles for a TV show.
+        """
+
+        payload = {"api_key": self.api_key, "language": language}
+
+        resp = get(self.base_url + f"/tv/{tv_id}/alternative_titles", params=payload)
+
+        if resp.status_code == 200:
+
+            check_res = resp.json()["results"]
+            if len(check_res) <= 0:
+                raise ZeroResultsFound(resp.text)
+            return resp.json()
+
         raise TmdbApiError(resp.text)
