@@ -15,7 +15,7 @@ from .pytmdb import Movie, TvShows
 from .excs import *
 
 __author__ = ["Stɑrry Shivɑm"]
-__version__ = 1.6
+__version__ = 1.7
 
 if __name__ == "__main__":
     from pprint import pprint

@@ -182,6 +182,44 @@ class Movie(AbsMovieDB):
 
         raise TmdbApiError(resp.text)
 
+    def collection(self, collection_id: int, language: str = "en") -> Dict[str, Any]:
+        """
+        Get collection details by id.
+        """
+
+        payload = {"api_key": self.api_key, "language": language}
+
+        resp = get(self.base_url + f"/collection/{collection_id}", params=payload)
+
+        if resp.status_code == 200:
+            return resp.json()
+        raise TmdbApiError(resp.text)
+
+    def search_collection(
+        self, query: str, language: str = "en", page: Optional[int] = 1
+    ) -> Dict[str, Any]:
+        """
+        Search for collections.
+        """
+
+        payload = {
+            "api_key": self.api_key,
+            "language": language,
+            "query": query,
+            "page": page,
+        }
+
+        resp = get(self.base_url + "/search/collection", params=payload)
+
+        if resp.status_code == 200:
+
+            check_res = resp.json()["results"]
+            if len(check_res) <= 0:
+                raise ZeroResultsFound(resp.text)
+            return resp.json()
+
+        raise TmdbApiError(resp.text)
+
 
 ############################## TvShows class ##############################
 
