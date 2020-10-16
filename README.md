@@ -43,13 +43,19 @@ Exceptions can be imported from `pymoviedb.excs` for easy error handling.
 Example:
 
 ```python
-from pymoviedb.excs import ZeroResultsFound
+from pymoviedb.excs import ZeroResultsFound, TmdbApiError
 tv = TvShows(APIKEY)
 
 try:
     print(tv.search("xsxsxsx"))
 except ZeroResultsFound:
-     print("Nothing found!")
+    print("Nothing found!")
+
+try:
+    print(tv.searchid("xsxsxsxs"))
+except TmdbApiError as e:
+    print(e.message)
+    
 ```  
 
 

@@ -5,9 +5,10 @@ this_dir = path.abspath(path.dirname(__file__))
 with open("README.md", "r") as f:
     long_description = f.read()
 
-with open("pymoviedb/__init__.py", 'r') as f:
+with open("pymoviedb/__init__.py", "r") as f:
     import re
-    version = re.search('__version__ = (\S+)', f.read()).group(1)
+
+    version = re.search("__version__ = (\S+)", f.read()).group(1)
 
 setup(
     name="pymoviedb",

@@ -4,7 +4,7 @@ class TmdbApiError(Exception):
     """
 
     def __init__(self, message):
-        super().__init__(message)
+        super().__init__(message["status_message"])
 
 
 class ZeroResultsFound(Exception):
