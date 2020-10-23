@@ -4,14 +4,17 @@ class TmdbApiError(Exception):
     """
 
     def __init__(self, message):
-        super().__init__(message["status_message"])
+
+        if message.get("status_message"):
+            super().__init__(message["status_message"])
+        else:
+            super().__init__(str(message))
 
 
 class ZeroResultsFound(Exception):
     """
-    raise when zero results are found
+    raised when zero results are found
     against search query.
     """
 
-    def __init__(self, message):
-        super().__init__(message)
+    pass
