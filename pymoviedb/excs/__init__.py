@@ -1,4 +1,9 @@
-class TmdbApiError(Exception):
+class PyMovieDBError(Exception):
+    """
+    Base class for all PyMovieDB errors
+    """
+
+class TmdbApiError(PyMovieDBError):
     """
     raised when API response is not `OK 200`
     """
@@ -6,15 +11,14 @@ class TmdbApiError(Exception):
     def __init__(self, message):
 
         if message.get("status_message"):
-            super().__init__(message["status_message"])
+            excp_msg = message["status_message"]
         else:
-            super().__init__(str(message))
+            excp_msg = str(message)
 
+        super().__init__(excp_msg)
 
-class ZeroResultsFound(Exception):
+class ZeroResultsFound(PyMovieDBError):
     """
     raised when zero results are found
     against search query.
     """
-
-    pass
