@@ -13,7 +13,7 @@
 
 ## Synopsis
 ```python
->>> from pymoviedb import Movie, TvShows
+>>> from pymoviedb import Movie, TvShow
 >>> APIKEY = "you-api-key"
 
 # Create a Movie object
@@ -30,7 +30,7 @@
 >>> mv.recommendations(597)
 
 # Similarly for tvshows
->>> tv = TvShows(APIKEY)
+>>> tv = TvShow(APIKEY)
 >>> tv.search("Breaking bad")
 
 # All methods can be found by using dir() function
@@ -54,7 +54,7 @@ except ZeroResultsFound:
 try:
     print(tv.searchid("xsxsxsxs"))
 except TmdbApiError as e:
-    print(e.message)
+    print("invalid query!")
     
 ```  
 

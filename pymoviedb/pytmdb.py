@@ -33,6 +33,8 @@ from typing import Optional, Dict, Any
 from requests import get
 from .excs import TmdbApiError, ZeroResultsFound
 
+import ujson as json
+
 
 class AbsMovieDB(ABC):
     """Abstract class for tmdb"""
@@ -49,7 +51,9 @@ class AbsMovieDB(ABC):
         pass
 
 
-############################## Movies class ##############################
+# ----------------------------------------------------#
+# Movie class
+# ----------------------------------------------------#
 
 
 class Movie(AbsMovieDB):
@@ -78,12 +82,12 @@ class Movie(AbsMovieDB):
 
         if resp.status_code == 200:
 
-            check_res = resp.json()["results"]
-            if len(check_res) <= 0:
-                raise ZeroResultsFound(resp.json())
-            return resp.json()
+            results = json.loads(resp.text)
+            if len(results["results"]) <= 0:
+                raise ZeroResultsFound
+            return results
 
-        raise TmdbApiError(resp.json())
+        raise TmdbApiError
 
     def searchid(
         self,
@@ -104,8 +108,8 @@ class Movie(AbsMovieDB):
         resp = get(self.base_url + f"/movie/{movie_id}", params=payload)
 
         if resp.status_code == 200:
-            return resp.json()
-        raise TmdbApiError(resp.json())
+            return json.loads(resp.text)
+        raise TmdbApiError
 
     def recommendations(
         self, movie_id: int, language: str = "en", page: Optional[int] = 1
@@ -122,8 +126,8 @@ class Movie(AbsMovieDB):
         )
 
         if resp.status_code == 200:
-            return resp.json()
-        raise TmdbApiError(resp.json())
+            return json.loads(resp.text)
+        raise TmdbApiError
 
     def trending(self, time_win: str = "week") -> Dict[str, Any]:
         """
@@ -136,8 +140,8 @@ class Movie(AbsMovieDB):
         )
 
         if resp.status_code == 200:
-            return resp.json()
-        raise TmdbApiError(resp.json())
+            return json.loads(resp.text)
+        raise TmdbApiError
 
     def certification(self) -> Dict[str, Any]:
         """
@@ -150,8 +154,8 @@ class Movie(AbsMovieDB):
         resp = get(self.base_url + "/certification/movie/list", params=payload)
 
         if resp.status_code == 200:
-            return resp.json()
-        raise TmdbApiError(resp.json())
+            return json.loads(resp.text)
+        raise TmdbApiError
 
     def genre(self, language: str = "en") -> Dict[str, Any]:
         """
@@ -162,8 +166,8 @@ class Movie(AbsMovieDB):
         resp = get(self.base_url + "/genre/movie/list", params=payload)
 
         if resp.status_code == 200:
-            return resp.json()
-        raise TmdbApiError(resp.json())
+            return json.loads(resp.text)
+        raise TmdbApiError
 
     def alternative_titles(
         self, movie_id: int, country: Optional[str] = None
@@ -181,12 +185,12 @@ class Movie(AbsMovieDB):
 
         if resp.status_code == 200:
 
-            check_res = resp.json()["titles"]
-            if len(check_res) <= 0:
-                raise ZeroResultsFound(resp.json())
-            return resp.json()
+            results = json.loads(resp.text)
+            if len(results["titles"]) <= 0:
+                raise ZeroResultsFound
+            return results
 
-        raise TmdbApiError(resp.json())
+        raise TmdbApiError
 
     def collection(
         self, collection_id: int, language: str = "en"
@@ -202,8 +206,8 @@ class Movie(AbsMovieDB):
         )
 
         if resp.status_code == 200:
-            return resp.json()
-        raise TmdbApiError(resp.json())
+            return json.loads(resp.text)
+        raise TmdbApiError
 
     def search_collection(
         self, query: str, language: str = "en", page: Optional[int] = 1
@@ -223,12 +227,12 @@ class Movie(AbsMovieDB):
 
         if resp.status_code == 200:
 
-            check_res = resp.json()["results"]
-            if len(check_res) <= 0:
-                raise ZeroResultsFound(resp.json())
-            return resp.json()
+            results = json.loads(resp.text)
+            if len(results["results"]) <= 0:
+                raise ZeroResultsFound
+            return results
 
-        raise TmdbApiError(resp.json())
+        raise TmdbApiError
 
     def reviews(
         self, movie_id: int, language: str = "en", page: Optional[int] = 1
@@ -245,18 +249,20 @@ class Movie(AbsMovieDB):
 
         if resp.status_code == 200:
 
-            check_res = resp.json()["results"]
-            if len(check_res) <= 0:
-                raise ZeroResultsFound(resp.json())
-            return resp.json()
+            results = json.loads(resp.text)
+            if len(results["results"]) <= 0:
+                raise ZeroResultsFound
+            return results
 
-        raise TmdbApiError(resp.json())
-
-
-############################## TvShows class ##############################
+        raise TmdbApiError
 
 
-class TvShows(AbsMovieDB):
+# ----------------------------------------------------#
+# TvShow class
+# ----------------------------------------------------#
+
+
+class TvShow(AbsMovieDB):
     """This class handles all tv related tasks"""
 
     def search(
@@ -282,12 +288,12 @@ class TvShows(AbsMovieDB):
 
         if resp.status_code == 200:
 
-            check_res = resp.json()["results"]
-            if len(check_res) <= 0:
-                raise ZeroResultsFound(resp.json())
-            return resp.json()
+            results = json.loads(resp.text)
+            if len(results["results"]) <= 0:
+                raise ZeroResultsFound
+            return results
 
-        raise TmdbApiError(resp.json())
+        raise TmdbApiError
 
     def searchid(
         self,
@@ -308,8 +314,8 @@ class TvShows(AbsMovieDB):
         resp = get(self.base_url + f"/tv/{tv_id}", params=payload)
 
         if resp.status_code == 200:
-            return resp.json()
-        raise TmdbApiError(resp.json())
+            return json.loads(resp.text)
+        raise TmdbApiError
 
     def recommendations(
         self, tv_id: int, language: str = "en", page: Optional[int] = 1
@@ -325,8 +331,8 @@ class TvShows(AbsMovieDB):
         )
 
         if resp.status_code == 200:
-            return resp.json()
-        raise TmdbApiError(resp.json())
+            return json.loads(resp.text)
+        raise TmdbApiError
 
     def trending(self, time_win: str = "week") -> Dict[str, Any]:
         """
@@ -337,8 +343,8 @@ class TvShows(AbsMovieDB):
         resp = get(self.base_url + f"/trending/tv/{time_win}", params=payload)
 
         if resp.status_code == 200:
-            return resp.json()
-        raise TmdbApiError(resp.json())
+            return json.loads(resp.text)
+        raise TmdbApiError
 
     def certification(self) -> Dict[str, Any]:
         """
@@ -351,8 +357,8 @@ class TvShows(AbsMovieDB):
         resp = get(self.base_url + "/certification/tv/list", params=payload)
 
         if resp.status_code == 200:
-            return resp.json()
-        raise TmdbApiError(resp.json())
+            return json.loads(resp.text)
+        raise TmdbApiError
 
     def genre(self, language: str = "en") -> Dict[str, Any]:
         """
@@ -363,8 +369,8 @@ class TvShows(AbsMovieDB):
         resp = get(self.base_url + "/genre/tv/list", params=payload)
 
         if resp.status_code == 200:
-            return resp.json()
-        raise TmdbApiError(resp.json())
+            return json.loads(resp.text)
+        raise TmdbApiError
 
     def alternative_titles(
         self, tv_id: int, language: str = "en"
@@ -381,12 +387,12 @@ class TvShows(AbsMovieDB):
 
         if resp.status_code == 200:
 
-            check_res = resp.json()["results"]
-            if len(check_res) <= 0:
-                raise ZeroResultsFound(resp.json())
-            return resp.json()
+            results = json.loads(resp.text)
+            if len(results["results"]) <= 0:
+                raise ZeroResultsFound
+            return results
 
-        raise TmdbApiError(resp.json())
+        raise TmdbApiError
 
     def reviews(
         self, tv_id: int, language: str = "en", page: Optional[int] = 1
@@ -401,9 +407,9 @@ class TvShows(AbsMovieDB):
 
         if resp.status_code == 200:
 
-            check_res = resp.json()["results"]
-            if len(check_res) <= 0:
-                raise ZeroResultsFound(resp.json())
-            return resp.json()
+            results = json.loads(resp.text)
+            if len(results["results"]) <= 0:
+                raise ZeroResultsFound
+            return results
 
-        raise TmdbApiError(resp.json())
+        raise TmdbApiError

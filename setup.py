@@ -21,7 +21,7 @@ setup(
     version=version,
     license="MIT",
     packages=find_packages(),
-    install_requires=["requests"],
+    install_requires=["requests", "ujson"],
     python_requires=">=3.6",
     keywords="api development tmdb themoviedb wrapper library python3",
     classifiers=[

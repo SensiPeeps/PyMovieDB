@@ -11,10 +11,10 @@
 # SOFTWARE.
 
 
-from .pytmdb import Movie, TvShows
+from .pytmdb import Movie, TvShow
 
 __author__ = ["Stɑrry Shivɑm"]
-__version__ = 1.9
+__version__ = 2.0
 
 if __name__ == "__main__":
     from pprint import pprint
