@@ -14,7 +14,7 @@
 from .pytmdb import Movie, TvShow
 
 __author__ = ["Stɑrry Shivɑm"]
-__version__ = 2.0
+__version__ = 2.1
 
 if __name__ == "__main__":
     from pprint import pprint
